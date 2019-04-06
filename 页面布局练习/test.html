@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <style media="screen">
+     html *{
+         margin: 0px;
+         padding: 0px;
+     }
+     .layout{
+         margin-top: 20px;
+     }
+     .layout article div{
+         min-height: 100px;
+     }
+     .layout.float .right{
+      float: right;
+      width: 300px;
+      background:red;
+     }
+     .layout.float .left{
+         float:left;
+         width: 300px;
+         background: #3e3e3e;
+     }
+     .layout.float .center{
+         background: #66ee66;
+         color: red;
+     } 
+     .layout.absolute .left-right-center>div{
+         position: absolute;
+     }
+     .layout.absolute .right{
+         right: 0px;
+         width: 300px;
+         background: #000000;
+     }
+     .layout.absolute .center{
+         left: 300px;
+         right: 300px;
+         background: #daee66; 
+         /* 左右各三百实现宽度的自适应 */
+     }
+     .layout.absolute .left{
+         left: 0px;
+         background: #929090;
+         width: 300px;
+        
+        
+     }
+    </style>
+</head>
+<body>
+    <section class="layout float">
+    <article class="left-right-center">
+        <div class="left"></div>
+        <div class="right"></div>
+        <div class="center">
+            <h1>通过浮动来实现页面布局</h1>
+        </div>
+    </article>
+ </section>
+ <section class="layout absolute">
+     <article class="left-right-center">
+         <div class="left"></div>
+         <div class="center">
+                <h1>
+                通过绝对定位实现页面布局
+                 </h1>
+         </div>
+         <div class="right"></div>
+        
+     </article>
+ </section>
+ <section class="layout flex">
+     <style media="screen">
+     .layout.flex{
+         margin-top: 140px;
+     }
+     .layout.flex .left-center-right{
+         display: flex;
+
+     }
+     .layout.flex .left{
+         width: 300px;
+         background: #000000;
+     }
+     .layout.flex .right{
+         width: 300px;
+         background: red;
+     }
+     .layout.flex .center{
+         flex: 1;
+         background: #daee66;
+     }
+     </style>
+     <article class="left-center-right">
+        <div class="left"></div>
+        <div class="center">
+                <h1>通过flex来实现页面布局</h1>
+        </div> 
+        <div class="right"></div>
+       
+     </article>
+ </section>
+ <section class="layout table">
+        <style media="screen">
+        .layout.table .left-right-center{
+            display: table;
+            width: 100%;
+            height: 100px;
+        }
+        .layout.table .left-right-center>div{
+            display: table-cell;
+        }
+        .layout.table .left{
+            width: 300px;
+            background: #000000;
+        }
+        .layout.table .right{
+            width: 300px;
+            background: red;
+        }
+        .layout.table .center{
+            
+            background: #daee66;
+        }
+        </style>
+        <article class="left-right-center">
+            <div class="left"></div>
+            <div class="center">
+                    <h1>通过table来实现页面布局</h1>
+            </div>
+            <div class="right"></div>
+            
+        </article>
+     </section>
+   <section class="layout grid">
+       <style>
+         .layout.grid .left-center-right{
+             display: grid;
+             width: 100%;
+             grid-template-rows: 100px;
+             grid-template-columns: 300px auto 300px;
+         }
+         .layout.grid .left{
+             background: #000000;
+         }
+         .layout.grid .center{
+             background: yellow;
+         }
+         .layout.grid .right{
+             background: #000000;
+         }
+       </style>
+       <article class="left-center-right">
+           <div class="left"></div>
+           <div class="center"><h1>网格布局</h1></div>
+           <div class="right"></div>
+       </article>
+   </section>
+</body>
+</html>
+<!-- 
+    <section>标签是HTML5的新标签
+    标签定义文档中的节（section、区段）。
+    比如章节、页眉、页脚或文档中的其他部分
+    <article>标签规定独立的自包含内容，该标签支持HTML中的全局属性和时间属性
+ -->
+ <!-- 
+     本次练习遇到的keng：
+     一开始忘记给标签设置高度，导致没有实现浮动效果
+  -->
