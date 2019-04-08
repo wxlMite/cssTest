@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>面向对象</title>
+        <style>
+        </style>
+        <body>
+            <script type="text/javascript">
+            /**
+              类的声明
+            **/
+            function Animal(){
+                this.name='name';
+            }
+            /*
+            ES6类的声明
+            */
+            class Es6animal{
+                constructor(){
+                    this.name='name'
+                }
+            }
+            /**
+            *类的实例化(通过new 来对类实例化)
+            */
+             console.log(new Animal(),new Es6animal());
+            /**
+            类的继承的本质是原型链
+            **/
+             /**
+             *借助构造函数实现继承（只能实现部分继承，如果父类中还有其他的方法比如say方法，子类是无法继承的）
+             **/
+             function Parent1(){
+                 this.name='parent1';
+             }
+            //  Parent1.prototype.say=function(){};
+             function Child1(){
+                 Parent1.call(this);//call和apply改变的是函数运行的上下文
+                                    // （改变的Child this的指向使得父类的this属性挂载到child1实例中）
+                 this.type='child1';
+             }
+             console.log(new Child1)
+              /**
+              *借助原型链实现继承(如果一个类中有多个对象，该变其中一个对象其他对象也跟着改变（原型链中的原型对象是共用的）)
+              **/
+              function Parent2(){
+                  this.name='name';
+              }
+              function Child2(){
+                  this.type='child2';
+              }
+              Child2.prototype=new Parent2();
+              console.log(new Child2);
+            //   任何函数都有prototype这个属性，这个属性的作用就是为了让这个函数的
+            //   实例能访问到他的原型对象像上(原型链的基本原理)
+             /**
+             *组合方式,缺点：在这里父类引用了两次
+             **/
+             function Parent3(){
+                 this.name='name';
+                 this.play=[1,2,3];
+             }
+             function Child3(){
+                 Parent3.call(this);
+                 this.type='child3';
+             }
+             Child3.prototype=new Parent3();
+             var s3=new Child3();
+             var s4=new Child3();
+             s3.play.push(4);
+             console.log(s3.play,s4.play);
+             /**
+             *组合优化
+             **/
+             function Parent4(){
+                 this.name='name';
+                 this.play=[1,2,3];
+             }
+             function Child4(){
+                 Parent4.call(this);
+                 this.type='child3';
+             }
+             Child4.prototype=Parent4.prototype;//直接引用父类的原型对象
+             var s5=new Child4();
+             var s6=new Child4();
+             s5.play.push(4);
+             console.log(s5.play,s6.play);
+             //  instanceof 用于判断一个变量是否某个对象的实例,typeof用来获取一个变量是什么类型
+            // (number、function、boolean、undefine、string、object)
+            // instanceof和typeof都能用来判断一个变量是否为空或是什么类型的变量
+             console.log(s5 instanceof Child4);
+            //  问题：怎么区分一个对象是子类直接实例化的，还是父类直接实例化的;
+            // 直接引用了父类的，原因（它们的原型对象是共用的）
+            console.log(s5.constructor);
+             /**
+             *组合优化2
+             **/
+             function Parent5(){
+                 this.name='name';
+                 this.play=[1,2,3];
+             }
+             function Child5(){
+                 Parent5.call(this);
+                 this.type='child5';
+             }
+             Child5.prototype=Object.create(Parent5.prototype);
+             Child5.prototype.constructor=Child5;
+            //  上面那种方式直接给子类设置一个构造器是不能区分开对象是子类实例化还是父类实例化的，因为它们还是共用一个原型对象；
+            </script>
+          
+            
+        </body>
+    </head>
+</html>
