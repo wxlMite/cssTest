@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+          <ul>
+            <button>0</button>
+            <button>0</button>
+            <button>0</button>
+            <li>a</li>
+            <li>b</li>
+            <li>c</li>   
+          </ul>  
+        <script>
+            window.onload=function(){
+                var aBt=document.querySelectorAll('button');
+                var aLi=document.querySelectorAll('li');
+                var arr=['小白','小黑','小小'];
+                for(var i=0;i<aBt.length;i++){
+                    aBt[i].index=i;
+                    aBt[i].onclick=function(){                   
+                        this.innerHTML=arr[this.index];
+                        aLi[this.index].innerHTML=arr[this.index];
+                       }
+                    }
+                }
+           
+        </script>
+    </body>
+</html>

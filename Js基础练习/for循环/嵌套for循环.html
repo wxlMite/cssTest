@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style> 
+          ul{
+              border-top: 1px solid red;
+              border-bottom:1px solid red;
+          }
+          ul li{
+              border-top: none;
+              border-bottom:none;
+          } 
+          ul:after{
+            display:block; 
+            content:"clear";
+            height:0; 
+            clear:both;
+            overflow:hidden; 
+            visibility:hidden;
+          }
+
+        </style>
+        <script>
+             window.onload=function(){
+                 var aUl=document.querySelectorAll('ul');
+                 
+                 var aLi='';
+                 for(var i=0;i<aUl.length;i++){
+                     aLi=aUl[i].querySelectorAll('li');
+                        for(var j=0;j<aLi.length;j++){
+                            aLi[j].style.border="1px solid red"
+                        }
+                 }
+             }
+        </script>
+    </head>
+    <body>
+        <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+        </ul>
+        <ul>
+            <li>4</li>
+            <li>5</li>
+            <li>6</li>
+            <li>7</li>
+            <li>8</li>
+        </ul>
+        <ul>
+            <li>9</li>
+            <li>11</li>
+        </ul>
+        
+    </body>
+</html>

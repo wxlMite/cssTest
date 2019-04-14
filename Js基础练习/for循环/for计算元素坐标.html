@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+       p{
+          position: absolute;
+          top: 0px;     
+          width: 50px;
+          height: 50px;
+          background: red;
+          color: #fff;
+          font-size:20px;
+          text-align: center;
+        }
+    </style>
+    <script>
+       window.onload=function(){
+           
+           
+           for(var i=0;i<=10;i++){
+              document.body.innerHTML+= '<p>' + i+ '</p>';
+           }
+           var oP=document.querySelectorAll('p');
+           for(var j=0;j<oP.length;j++){
+               oP[j].style.left=10+j*50+'px';
+               oP[j].style.top=10+j*50+'px';
+
+           }
+
+	
+           
+       }
+    </script>
+    <body>
+       
+    </body>
+</html>

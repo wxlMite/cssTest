@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>JavaScript中获取input元素value值</title>
+    <link rel="stylesheet" href="">
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+        ul li{
+            list-style: none;
+        }
+        .pc{
+            position: relative;
+            width: 400px;
+            height: 500px;
+            margin: auto;
+            
+        }
+        .pc img{
+            width: 400px;
+            height: 500px;
+            margin-top: 25px;
+        }
+        .pc ul{
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            right: -70px;
+            top: 15px;
+        }
+        .pc li{
+            width: 50px; height: 50px;background: #666;  margin-top: 10px;
+        }
+        .pc .liActive{
+            background: rgb(247, 231, 11);
+        }
+        .pc p{
+            position: absolute;
+            top: 25px;
+        }
+        .pc span{
+            position:absolute;
+            bottom: -25px;
+            margin:0px;
+        }
+        .pc p,.pc span{
+            width: 400px;height: 30px;line-height: 30px;color: #fff;
+            text-align: center;background: #000;
+        }
+    </style>
+    <script>
+        window.onload=function(){
+            var img=document.querySelector("img");
+            var aLi=document.querySelectorAll("ul li");
+            var oIndex=document.querySelector(".index");
+            var item=document.querySelector(".item");
+            var arrItiem=['面具1','面具2','美女1','美女12'];
+            var arrImg=['img/1.png','img/2.png','img/3.png','img/4.png'];
+            var num=0;
+            var timer=null;
+            //初始化
+            img.src=arrImg[num];
+            oIndex.innerHTML=1+num+'/'+arrImg.length;
+            item.innerHTML=arrItiem[num];
+            aLi[num].className='liActive';
+           
+           for(var i=0;i<aLi.length;i++){
+           
+            aLi[i].index=i;
+           aLi[i].onmouseover=function(){
+                img.src=arrImg[this.index];
+                oIndex.innerHTML=1+this.index+'/'+aLi.length;
+                item.innerHTML=arrItiem[this.index];
+             //先全部清除li的class，当点击某个li时再给li一个class
+                for(var i=0;i<aLi.length;i++){
+                    aLi[i].className='';
+                }
+                this.className='liActive';
+            }
+            
+           }
+    }
+    </script>
+</head>
+<body>
+    <div class="pc">
+        <p class="index">1/4</p>
+        <span class="item">文字加载中...</span>
+        <img src="">
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+  
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            ul{
+                border: 1px solid#3e3e;
+                width: 100%;
+                height: 500px;
+            }
+            ul li{
+             border-bottom: 1px solid#000;
+            }
+        
+        </style>
+        <script>
+          window.onload = function(){
+            // 不用事件委托，需要触发每个li来改变他们的背景颜色
+            // var aLi=$("#ul li");
+            // for(var i=0; i<aLi.length; i++){
+            //     aLi[i].onmouseover = function(){
+            //     this.style.background = "red";
+            //     }
+            //     aLi[i].onmouseout = function(){
+            //     this.style.background = "";
+            //         }
+            //     }
+            // ——————————————————————————————————————————————————————
+             /*下面用事件委托来实现          
+            这里要用到事件源：event 对象，事件源，不管在哪个事件中，只要你操作的那个元素就是事件源。
+            ie：window.event.srcElement
+            标准下:event.target
+            nodeName:找到元素的标签名
+            */
+            
+            var oUl = document.querySelector("#ul");
+            var aLi = document.querySelectorAll("li");
+            var oBt=document.querySelector(".add");
+   
+            oUl.onmouseover=function(ev){
+                var ev = ev || window.event;
+                var target = ev.target || ev.srcElement;
+                //alert(target.innerHTML);
+                if(target.nodeName.toLowerCase() == "li"){// nodeName找元素的标签，toLowerCase() 来把字符串转换成小写
+                target.style.background = "red";
+                }
+              }
+              oUl.onmouseout=function(ev){
+                  var ev =ev || window.event;
+                  var target=ev.target||ev.srcElement;
+                  if(target.nodeName.toLowerCase()=="li"){
+                      target.style.background="";
+                  }
+              }
+              for(var i=0;i<aLi.length;i++){
+                  
+                 
+              }
+              oBt.onclick=function(){
+                  var inputValue = document.getElementById("text").value;//点击的时候再获取文本框的值，如果一开始就获取该值，则获取的值为空
+                  var oLi=document.createElement("li");
+                  oLi.innerHTML=inputValue;
+                  oUl.appendChild(oLi);
+              }
+                }
+        </script>
+    </head>
+    <body>
+       
+        <ul id="ul">
+            <input id="text" type="text"/>
+            <button class="add">添加</button>
+            <li value="w"> 1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+        </ul>
+
+        
+        
+    </body>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+</html>

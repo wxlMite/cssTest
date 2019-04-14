@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style></style>
+        <script>
+           window.onload=function(){
+               var aBt=document.querySelectorAll("button");
+               var arrCssText=["background:red","background:#000","background:yellow"];
+               for(var i=0;i<aBt.length;i++){
+                // 自执行函数实现
+                //    (function(i){
+                    
+                //     aBt[i].onclick=function(){
+                //      console.log(this);
+                //       document.body.style.cssText=arrCssText[i];
+                   
+                //     }
+                //    })(i) 
+                  aBt[i].index=i;
+                   aBt[i].onclick=function(){
+                      console.log(this.index);
+                      document.body.style.cssText=arrCssText[this.index];
+                   
+                    }
+                }
+                }
+              
+        </script>
+    </head>
+    <body>
+        <button>红色</button>
+        <button>黑色</button>
+        <button>黄色</button>
+        
+    </body>
+</html>

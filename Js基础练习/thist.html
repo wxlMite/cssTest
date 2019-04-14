@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            ul li{
+                display: inline-block;
+                background: #cabcbc;
+                margin-left: 30px;
+                width: 70px;
+                height: 130px;
+            }
+           li span{
+                display: inline-block;
+                background: #f01010;
+                width: 60px;
+                height: 130px;
+                line-height: 130px;
+                margin-left: 5px;
+                margin-top: 60px;
+                display: none;
+           }
+        </style>
+        <script>
+            window.onload=function(){
+                // var oSpan=document.querySelectorAll('li span');
+                var aLi=document.querySelectorAll("li");
+                for(var i=0;i<aLi.length;i++){
+                    aLi[i].onmouseover=function(){
+                        var oSpan=this.querySelector('span');
+                        oSpan.style.display="block";                    }
+                    aLi[i].onmouseout=function(){
+                        var oSpan=this.querySelector('span');
+                        oSpan.style.display="none";
+                    }
+                }
+               
+            }
+        
+        </script>
+    </head>
+    <body>
+        <ul>
+            <li><span></span></li>
+            <li><span></span></li>
+            <li><span></span></li>
+        </ul>
+        
+    </body>
+</html>

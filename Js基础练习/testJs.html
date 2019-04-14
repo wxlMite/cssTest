@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+           ul li{
+               list-style: none;
+           }
+        </style>
+    </head>
+    <body>
+       <!-- <button>按钮</button> -->
+    </body>
+    <script>
+        window.onload=function(){
+            var liText=["你","好","呀"];
+            function $(str){
+                var element=document.querySelectorAll(str);
+                return element;
+            }
+            var str='';
+           for(var i=0;i<10000;i++){
+            //    str+= '<input type="button" value="按钮" />';
+            str+='<button>按钮</btton>';
+           }
+           document.body.innerHTML=str;
+        }
+    </script>
+</html>

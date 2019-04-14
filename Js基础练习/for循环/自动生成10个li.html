@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            ul{
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%,-50%);
+            }
+            ul li{
+                list-style: none;
+                display: inline-block;
+                width: 50px;
+                height: 50px;
+                line-height: 50px;
+                float: left;
+                background: #000000;
+                margin:10px 10px 0px 0px;
+                color: #fff;
+                text-align: center;
+                font-size: 12px;
+
+            }
+         
+        </style>
+        
+    </head>
+    <body>
+        <button>自动生成10个li</button>
+        <ul></ul>
+    <script>
+        window.onload=function(){
+            var oBt=document.querySelector('button');
+            var oUl=document.querySelector('ul');
+            var flage=true;
+            var color=["red","yellow","blue","green"];
+            
+                oBt.onclick=function(){
+                 if(flage){
+                    for(var i=0;i<10;i++){
+                        var aLi=document.createElement('li');
+                        // aLi.index=i;
+                        oUl.appendChild(aLi);
+                        aLi.innerHTML=i;
+                        aLi.style.background=color[i%4];
+                        
+                    } 
+                    flage=false;      
+                }
+               
+            }
+
+        }
+        
+    </script>  
+    </body>
+</html>

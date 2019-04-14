@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+           .div1{
+               position: relative;
+               width: 510px;
+               height: 510px;
+               background: #d1c5c5;
+           }
+           .div1 div{
+               float: left;
+               width: 50px;
+               height: 50px;
+               /* background: yellow; */
+               display: inline-block;
+               margin: 1px 1px 0px 0px;;
+           }
+        </style>
+        
+    </head>
+    <body>
+        <div class="div1">
+           
+        </div>
+       
+        <script>
+                window.onload=function(){
+                    var div1=document.querySelector('.div1');
+                    for(var i=0;i<100;i++){
+                        (function(i){      
+                         var aDiv=document.createElement('div');
+                        
+                          aDiv.style.opacity=0;
+                          //   注意：这里隐藏图片的话不能设置display="none",设置为none就找不到该元素的属性，则该元素会添加不上事件
+                          aDiv.onmouseover=function(){
+                             
+                              this.style.opacity=100;
+                          }
+                             if(i<10){
+                          aDiv.style.background=`url(img/pic.jpg) ${-51*i}px 0px no-repeat`;//ES6拼接字符串
+                         }else{     
+                           aDiv.style.background=`url(img/pic.jpg) ${-51*(i%10)}px ${-51*parseInt(i/10)}px no-repeat`;   
+                        }
+                        div1.appendChild(aDiv);
+                        })(i) 
+                    }
+                  
+                  
+     
+                       
+                }
+             </script>
+    </body>
+</html>

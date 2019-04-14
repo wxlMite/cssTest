@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>JavaScript中获取input元素value值</title>
+    <link rel="stylesheet" href="">
+    <style>
+       ul{
+           border: 1px solid#000;
+           width: 300px;
+           height: 100px;;
+           background: rgb(66, 60, 60); 
+           margin: auto;  
+       }
+       ul li{
+           list-style: none;
+           color: #ffffff;   
+           width: 300px;
+           height: 20px;;
+           
+       }
+       div{
+        display: none;
+       }
+      span{
+           display: inline-block;
+           width: 100%;
+           height: 20px;
+           border: 1px solid red;
+           
+       }
+    </style>
+    <script>
+        window.onload=function(){
+            var aDiv=document.querySelectorAll("div");
+            var aLi=document.querySelectorAll("li");
+            var flage=true;
+        //   for(var i=0;aLi.length;i++){
+        //       aLi[i].style.display="none";
+        //   }
+          for(var i=0;aLi.length;i++){
+              aLi[i].index=i;
+              aLi[i].onclick=function(){
+                  if(flage){
+                  aDiv[this.index].style.display="block";
+                }else{
+                  aDiv[this.index].style.display="none"; 
+                }
+              }
+          }
+           
+    }
+    </script>
+</head>
+<body>
+    <ul>
+        <li>好友
+        <div class="list">
+            <span>小白</span>
+            <span> 小黑</span>
+            <span>小小</span>          
+        </div>
+        </li>
+        <li>同学</li>
+        <div class="list">
+            <span>小白</span>
+            <span> 小黑</span>
+            <span>小小</span>          
+        </div>
+        <li>黑名单</li>     
+        <div class="list">
+            <span>小白</span>
+            <span> 小黑</span>
+            <span>小小</span>          
+        </div>
+    </ul>
+  
+</body>
+</html>
