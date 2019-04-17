@@ -1,0 +1,35 @@
+<!DOCTYPE <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <script>
+       window.onload=function(){
+           var arr=[100,3,2,5,6,3,0,6,0,100]
+           
+        //   排序去重
+        arr.sort();//先排序，相邻的数组便会排在一起
+        var newArr=[arr[0]];
+        console.log(arr);
+        for(var i=0;i<arr.length;i++){
+            if(arr[i]!==newArr[newArr.length-1]){//设置一个新数组,把排序后的数组的第一位值赋值给它，遍历旧数组，拿旧数组的
+                                                //   每一位值和新数组的最后一位值做比较，如果旧数组的值不等于新数组的最后一个值，就把该值放进新数组中
+                newArr.push(arr[i]);
+            }
+        }
+        // 下标去重
+        // 遍历数组，如果旧数组第i位元素首次出现的位置不是i，则表示第i项重复，则忽略掉，否则存入新数组
+        // var newArr=[];
+        // for(var i=0;i<arr.length;i++){
+        //     if(arr.indexOf(arr[i])==i){
+        //         newArr.push(arr[i]);
+        //     }
+            
+        // }
+        console.log(newArr);
+       }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

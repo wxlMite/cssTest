@@ -1,0 +1,102 @@
+<!DOCTYPE <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>好友菜单栏</title>
+   
+    <style>
+       *{
+           margin: 0px;padding: 0px;
+       }
+       .big-box{
+           width: 300px;
+           margin: auto;
+          
+       }
+       .box h6,li{
+           list-style: none;
+           width: 100%;
+           height: 35px;
+           line-height: 35px;
+           color: rgb(20, 18, 18);
+           border: 1px solid #000;
+           text-align:left 10px;
+       }
+       h6{
+           background: rgb(132, 126, 194);
+         
+       }
+       .box div{
+           display: none;
+       }
+
+    </style>
+</head>
+<body>
+        <ul class="big-box">
+            <ul class="box">
+                <h6>好友名单</h6>
+            <div>    
+                <li class="name">小小</li>
+                <li class="name">李白</li>
+                <li class="name">赵军</li>
+            </div>
+            </ul>
+            <ul class="box">
+                <h6>同学名单</h6>
+                <div>
+                <li class="name">小小</li>
+                <li class="name">李白</li>
+                <li class="name">赵军</li>
+                </div>
+            </ul>
+            <ul class="box">
+                <h6>黑名单名单</h6>
+                <div>
+                <li class="name">小小</li>
+                <li class="name">李白</li>
+                <li class="name">赵军</li>
+                </div>
+            </ul>
+        </ul>
+</body>
+<script>
+   window.onload=function(){
+       var points = [40,100,1,5,25,10,1000];
+       console.log(points.sort());
+       var aItime=document.querySelectorAll('.box h6');
+       var abox=document.querySelectorAll('.big-box');
+       var aLi=document.querySelectorAll('.box li');
+       var aDiv=document.querySelectorAll('.box div');
+       var flage=true;
+       for (var i=0;i<aItime.length;i++){
+           aItime[i].index=i;//js自定义属性，给元素设置一个索引值
+           aItime[i].onclick=function(){
+               if(flage){
+               this.style.background="yellow";
+               aDiv[this.index].style.display="block";
+               flage=false;
+            }else{
+               this.style.background="";
+               aDiv[this.index].style.display="none";
+               flage=true;
+            }
+           }
+         
+
+       }
+       
+           for(var i=0; i<aLi.length; i++){
+                aLi[i].onmouseover = function(){
+                this.style.background = "red";
+                }
+                aLi[i].onmouseout = function(){
+                this.style.background = "";
+                    }
+                }
+       
+
+   }
+</script>
+</html>

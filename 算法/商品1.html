@@ -1,0 +1,162 @@
+<!DOCTYPE <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <style>
+        *{margin: 0px;padding: 0px;}
+        ul li{
+            list-style: none;
+        }
+        a{
+            cursor: pointer; text-decoration: none;}
+        .box{
+            width: 800px;height: 400px;margin: auto;border:1px solid#000;
+            
+        } 
+        .box .lfBox{
+            float: left;
+        }
+        .lfBox>ul>li{
+            width: 50px;
+            height:100px;border-bottom: 1px solid#000;
+        }
+        .lfBox .liActive{
+            background: rgb(78, 75, 75);
+        }
+        .box .lrBox{
+            float: right;
+            width: 750px;
+            height: 100%;background: rgb(182, 162, 162);
+            position: relative;
+        }
+        .lrBox>ul{
+            position: absolute;
+            bottom: 0px;
+            width: 100%;
+            display: flex;
+        }
+        .lrBox li{
+            height: 50px; 
+            flex-direction: row;
+            flex-grow: 1;
+            background: rgba(22, 11, 21, 0.5);
+            border-left:1px solid#fff;
+            box-sizing: border-box;
+        }
+        .lrBox .active{
+            background: rgb(117, 61, 114);
+        }
+        .lrBox img{
+            width: 100%;height: 100%;
+        }   
+           
+            
+        
+           
+      
+    </style>
+   
+</head>
+<body>
+    <div class="box">
+        <div class="lfBox">
+            <ul>
+               
+            </ul>
+
+        </div>
+        <div class="lrBox">
+            <img>
+            <ul>
+               
+            </ul>
+
+        </div>
+    </div>
+    <script>
+      window.onload=function(){
+          var lfBox=document.querySelector(".box .lfBox");
+          var lfUl=document.querySelector(".lfBox>ul");
+          var lrUl=document.querySelector(".lrBox>ul");
+          var lrImg=document.querySelector(".box img");
+          var arr=[
+                    {title:"最热团购",child:[
+                        {title:"最热1",href:"img/6.png"},
+                        {title:"最热1",href:"img/5.png"},
+                        {title:"最热1",href:"img/7.png"},
+                        {title:"最热1",href:"img/9.png"}]
+                    },
+                    {title:"最热团购1",child:[
+                        {title:"特惠1",href:"img/5.png"},
+                        {title:"特惠",href:"img/6.png"},
+                        {title:"特惠",href:"img/3.png"}]
+                    },
+                    {title:"最热团购2",child:[
+                        {title:"最热3",href:"img/8.png"},
+                        {title:"最热1",href:"img/4.png"},
+                        {title:"最热1",href:"img/3.png"},
+                        {title:"最热1",href:"img/5.png"}]
+                    },
+                    {title:"最热团购4",child:[
+                        {title:"特惠",href:"img/7.png"},
+                        {title:"特惠",href:"img/9.png"},
+                        {title:"特惠",href:"img/8.png"}]
+                    }
+                ]
+       
+        
+       for(var i=0;i<arr.length;i++){
+           lf(i);
+       }
+       function lf(lfIndex){
+             var lfLi=document.createElement("li");
+             lfLi.innerHTML=`<a><i></i><span>${arr[lfIndex].title}</span></a>`;
+            
+             
+                 lfLi.onclick=function(){
+                     var lfLiArr=document.querySelectorAll(".lfBox li");
+                     //初始化
+                     for(var i=0;i<lfLiArr.length;i++){
+                        lfLiArr[i].className="";
+                     }
+                     lfLiArr[lfIndex].className='liActive';
+                
+                     lr(lfIndex);
+             }
+            
+           
+             lfUl.appendChild(lfLi); 
+             
+       }
+       function lr(lrIndex){
+           
+        lrUl.innerHTML="";
+          for(var i=0;i<arr[lrIndex].child.length;i++){
+
+              console.log(arr[lrIndex].child.length);
+            
+              (function(childIndex){
+                var lrLi=document.createElement('li');
+                lrUl.appendChild(lrLi);
+                lrImg.src=arr[lrIndex].child[0].href;
+                    lrLi.innerHTML=arr[lrIndex].child[childIndex].title;
+                    lrLi.onmouseover=function(){
+                        var lrLiArr=document.querySelectorAll(".lrBox li");
+                        
+                        for(var i=0;i<lrLiArr.length;i++){
+                            lrLiArr[i].className='';
+                          
+                        }
+                        this.className="active";
+                        lrImg.src=arr[lrIndex].child[childIndex].href;
+                        
+                    }
+              })(i)
+          }
+          
+       }
+      lr(0);
+      }
+    </script>
+</body>
+</html>
