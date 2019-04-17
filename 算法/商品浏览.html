@@ -1,0 +1,204 @@
+<!DOCTYPE <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <style>
+        *{
+            margin: 0;padding: 0;
+
+        }
+        .big-box{
+          position: relative;
+          width: 970px;
+          height: 400px;
+          margin: auto;
+        }
+     
+        ul li{
+            list-style: none;
+            
+        }
+        .left-box{
+            position: absolute;
+            left: 0;
+            width: 150px;
+            border: 1px solid#000;
+            height: 400px;
+        }
+        .left-box li{
+            width: 100%;
+            height: 100px;
+            border-bottom: 1px solid#000;
+            text-align: center;
+        }
+        .left-box li.active{
+            background: #ccc;
+        }
+        .left-box a{
+            cursor: pointer;
+            text-decoration: none;
+        }
+        
+
+
+       .right-box{
+            position: absolute;
+            right: 0;
+            width: 820px;
+            border: 1px solid#000;
+            height: 400px;
+            background: yellow;
+       }
+       .right-box1{
+            position: absolute;
+            right: 0;
+            width: 1000px;
+            border: 1px solid#000;
+            height: 400px;
+            background: rgb(0, 255, 128);
+       }
+       .right-box2{
+            position: absolute;
+            right: 0;
+            width: 1000px;
+            border: 1px solid#000;
+            height: 400px;
+            background: rgb(0, 255, 128);
+       }
+       .right-box3{
+            position: absolute;
+            right: 0;
+            width: 1000px;
+            border: 1px solid#000;
+            height: 400px;
+            background: rgb(0, 255, 128);
+       }
+  
+       .right-box li{
+           box-sizing:border-box;
+           height: 30px;
+           line-height: 30px;
+           background: rgba(0,0,0,0.4);
+           z-index: 1;
+           margin:0px 1px;
+           flex-grow:1;
+           color:#fff;
+           text-align: center;
+       }
+       .right-box img{
+          float: right;
+       }
+       #image{
+           width:100%;
+           height: 100%;
+       }
+       .content{
+           display: flex;
+           flex-direction: row;
+           justify-content: flex-start;
+           width: 100%;
+           position: absolute;
+           bottom: 0px;
+           left: 0px;
+       }
+       .content li.active{
+           background:rgb(239,49,99);
+       }
+    </style>
+  
+    
+</head>
+<body>
+    <div class="big-box">
+        <div class="left-box box">
+            <ul class="menu">
+               
+            </ul>
+        </div>
+        <div class="right-box box">
+            <img id="image" src="img/6.png" >
+        
+                <ul class="content">
+                   <li>1</li> 
+                   <li>1</li> 
+                   <li>1</li> 
+                   <li>1</li> 
+                </ul>
+            
+        </div>
+    </div>
+    <script>
+            window.onload=function(){
+            
+            var arr=[
+                    {title:"最热团购",child:[
+                        {title:"最热1",href:"img/6.png"},
+                        {title:"最热1",href:"img/6.png"},
+                        {title:"最热1",href:"img/6.png"},
+                        {title:"最热1",href:"img/6.png"}]
+                    },
+                    {title:"最热团购1",child:[
+                        {title:"特惠1",href:"img/5.png"},
+                        {title:"特惠",href:"img/6.png"},
+                        {title:"特惠",href:"img/3.png"}]
+                    },
+                    {title:"最热团购2",child:[
+                        {title:"最热3",href:"img/6.png"},
+                        {title:"最热1",href:"img/4.png"},
+                        {title:"最热1",href:"img/3.png"},
+                        {title:"最热1",href:"img/5.png"}]
+                    },
+                    {title:"最热团购4",child:[
+                        {title:"特惠",href:"img/6.png"},
+                        {title:"特惠",href:"img/9.png"},
+                        {title:"特惠",href:"img/8.png"}]
+                    }
+                ]
+            var menuBox=document.querySelector(".menu");
+            var content=document.querySelector(".content");
+            for(var i=0;i<arr.length; i++){
+                menu(i);  
+            }
+            function menu(index){
+                var menuLi=document.createElement("li");
+                menuLi.className="list";
+                menuLi.innerHTML=`<a><i></i><span>${arr[index].title}</span></a>`;
+                menuLi.onclick=function(){
+                    var menuLiArr=document.querySelectorAll(".menu li");
+                    for(var i=0; i<menuLiArr.length; i++){
+                        menuLiArr[i].className='list';
+                    };
+                    menuLiArr[index].className='list active';
+                    contentFn(index);
+                }
+                //默认选中第一条
+                if(index==0){menuLi.className="list active";contentFn(0)};
+                menuBox.appendChild(menuLi);
+            }
+
+            function contentFn(index){
+               content.innerHTML="";
+               for(var i=0; i<arr[index].child.length; i++){
+                   (function(childIndex){
+                        var contentLi=document.createElement('li');
+                        contentLi.innerHTML=arr[index].child[childIndex].title;
+                        contentLi.onmouseover=function(){
+                            var contentLiArr=document.querySelectorAll(".content li");
+                            for(var i=0; i<contentLiArr.length; i++){
+                                contentLiArr[i].className='';
+                            }
+                            this.className="active";
+                            document.getElementById("image").src=arr[index].child[childIndex].href;
+                        }
+                        if(childIndex==0){
+                            document.getElementById("image").src=arr[index].child[0].href;
+                            contentLi.className="active";
+                        }
+                        content.appendChild(contentLi);
+                   })(i) 
+               }
+            }
+         }
+         </script>
+</body>
+</html>

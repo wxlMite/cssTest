@@ -1,0 +1,182 @@
+<html>
+    <head>
+        <title>tab练习</title>
+    </head>
+    <style>
+        ul{
+            list-style: none;
+        }
+        *{
+           margin:0px;
+           padding:0px;
+        }
+       .box>li{
+         
+           width: 50px;
+           height: 50px;
+           text-align:center;
+           border-bottom: solid 1px #ccc;
+           box-sizing: border-box;
+       }
+       a{
+           cursor: pointer;
+       }
+       .box{
+           width:50px;
+        position:relative;
+        border:1px solid red;
+        
+       }
+       .box>li.active{
+           background:#ccc;
+       }
+       .contentBox{
+           width:850px;
+           height: 200px;
+           position: absolute;
+           top:0px;
+           left:50px;
+           background: red;
+           display:none;
+       }
+       .content{
+           position:absolute;
+           bottom: 0px;
+           left:0px;
+           width: 100%;
+           height: 30px;
+           display: flex;
+           flex-direction: row;
+           
+       }
+       .content >li{
+           flex-grow: 1;
+           background: rgba(0,0,0,0.4); 
+       }
+       .content >li.active{
+           background:rgb(206,16,90);
+       }
+    </style>
+    <body>
+        
+        <div>
+            <ul class="box">
+                <li>
+                    <a>a</a>
+                    <div class="contentBox">
+                        <ul class="content">
+                            <li>1</li>
+                            <li>2</li>
+                            <li>3</li>
+                            <li>4</li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <a>b</a>
+                    <div class="contentBox">
+                        <ul class="content">
+                            <li>1</li>
+                            <li>2</li>
+                            <li>3</li>
+                           
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <a>c</a>
+                    <div class="contentBox">
+                        <ul class="content">
+                            <li>1</li>
+                            <li>2</li>
+                         
+                            <li>4</li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <a>d</a>
+                    <div class="contentBox">
+                        <ul class="content">
+                            <li>1</li>
+                            <li>2</li>
+                            <li>3</li>
+                            <li>4</li>
+                        </ul>
+                    </div>
+                </li>
+               
+            </ul>
+        </div>
+        <script>
+           var menuArr=document.querySelectorAll(".box>li>a");
+           var boxLi=document.querySelectorAll(".box>li");
+           var index=0;
+           var contentArr=document.querySelectorAll(".contentBox");
+           var img=[
+                    {imge:[
+                        {href:"img/6.png"},
+                        {href:"img/5.png"},
+                        {href:"img/3.png"},
+                        {href:"img/4.png"}]},
+                  
+                    {imge:[
+                        {href:"img/5.png"},
+                        {href:"img/6.png"},
+                        {href:"img/3.png"}]},
+                   
+                    {imge:[
+                        {href:"img/6.png"},
+                        {href:"img/4.png"},
+                        {href:"img/3.png"},
+                        {href:"img/5.png"}]
+                    },
+                    {imge:[
+                        {href:"img/7.png"},
+                        {href:"img/8.png"},
+                        {href:"img/9.png"},
+                        {href:"img/9.png"}]
+                    }
+                ]
+                for(var i=0;i<menuArr.length; i++){
+                    rightBox(i);
+                }
+                contentArr[0].style.display="block";
+
+             //点击左边栏目显示右边框
+             function rightBox(rightIndex){
+               menuArr[rightIndex].onclick=function(){
+                   index=rightIndex;
+                   for(var j=0; j<contentArr.length; j++){
+                       contentArr[j].style.display="none";
+                       boxLi[j].className=""
+                   }
+                   boxLi[rightIndex].className="active";
+                   this.parentNode.querySelector(".contentBox").style.display="block";
+                   contentFn(rightIndex);
+               }
+             }
+           function contentFn(liIndex){
+              var contentLi = contentArr[liIndex].querySelectorAll(".content>li");
+               for(var i=0;i<contentLi.length; i++){
+                  contentLi[i].index=i;
+                  contentLi[i].onmouseover=function(){
+                      
+                      for(var i=0;i<contentLi.length;i++){
+                          contentLi[i].className="";
+                      }
+                      this.className="active";
+                      contentArr[liIndex].style.background=`url(${img[liIndex].imge[this.index].href})`;  
+                   
+                       
+                      }
+                     
+                  }
+             
+               contentArr[liIndex].style.background=`url(${img[liIndex].imge[0].href})`;
+           }
+           contentFn(0);
+          
+        </script>
+    </body>
+</html>

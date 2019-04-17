@@ -1,0 +1,24 @@
+<!DOCTYPE <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>闭包练习</title>
+</head>
+<body>
+    
+</body>
+<script>
+    function father(){
+        var name="xl";
+        function child(){
+            alert(name);
+        }
+        return child;
+    }
+    var c=father();
+    c();
+    // 此时让c等于整个函数father();而函数里的返回值是b没有输出，只是return出来而已 
+    // 然后再调用c()函数，意识是触发c函数c调用child（）的值然后输出来
+    // 在此在函数father外无法直接调用child函数，所以return出去
+</script>
+</html>

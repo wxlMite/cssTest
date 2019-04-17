@@ -1,0 +1,57 @@
+<!DOCTYPE <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <style>
+      p{
+          display: inline-block;
+          width: 100px;
+          height: 19px;
+      }
+      input{
+         display: none;
+      }
+    </style>
+   
+</head>
+
+<body>
+    <input  value=""> 
+    <p>请修改</p>
+    <button>修改</button>
+    <button>确定</button>
+    <button>取消</button>
+</body>
+<script>
+   window.onload=function(){
+       var text=document.querySelector("input");
+       var oP=document.querySelector("p");
+       var oBt=document.querySelectorAll("button");
+       var flag=false;
+       oBt[0].onclick=function(){
+           oP.style.display="none";
+           text.style.display="block";
+           text.value=oP.innerHTML;
+           flag=true;
+       }
+       
+       oBt[1].onclick=function(){
+           
+           if(!flag){
+            console.log(!flag);
+               return false;
+
+           }
+            text.style.display="none";
+            oP.style.display="block";
+            oP.innerHTML=text.value;
+            flag=false;
+        }
+       oBt[2].onclick=function(){
+           text.style.display="none";
+           oP.style.display="block";
+           
+       }
+   }
+</script>
+</html>

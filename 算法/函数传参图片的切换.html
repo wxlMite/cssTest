@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>JavaScript中获取input元素value值</title>
+    <link rel="stylesheet" href="">
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+        ul li{
+            list-style: none;
+        }
+        .pc{
+            position: relative; width: 400px;height: 500px;  float: left;margin-right: 80px;
+ 
+        }
+      
+        .pc img{
+            width: 400px; height: 500px;margin-top: 25px;    
+        }
+        .pc ul{
+            width: 50px;  height: 50px;position: absolute;right: -70px;top: 15px;
+ 
+        }
+        .pc li{
+            width: 50px; height: 50px;background: #666;  margin-top: 10px;
+        }
+        .pc .liActive{
+            background: rgb(247, 231, 11);
+        }
+        .pc p{
+            position: absolute;
+            top: 25px;
+        }
+        .pc span{
+            position:absolute;
+            bottom: -25px;
+            margin:0px;
+        }
+        .pc p,.pc span{
+            width: 400px;height: 30px;line-height: 30px;color: #fff;
+            text-align: center;background: #000;
+        }
+    </style>
+    <script>
+        window.onload=function(){
+
+            var timer=null;
+            //初始化
+            var num=0;
+            function fnTab(element,item1,img1,evt){
+                var oDiv=document.getElementById(element);
+                var aLi=oDiv.querySelectorAll("li");
+                // var arrItiem=['面具1','面具2','美女1','美女12'];
+                // var arrImg=['img/1.png','img/2.png','img/3.png','img/4.png'];   
+                var img=oDiv.querySelector("img");  
+                var oIndex=oDiv.querySelector(".index");
+                var item=oDiv.querySelector(".item");   
+                img.src=img1[num];
+                oIndex.innerHTML=1+num+'/'+img1.length;
+                item.innerHTML=item1[num];
+                //先清空所有li的类名，再给当前li赋一个新类名
+                for(var i=0;i<aLi.length;i++){
+                    aLi[i].className='';
+                }
+                    aLi[num].className='liActive';
+                for(var i=0;i<aLi.length;i++){
+                    aLi[i].index=i;
+            aLi[i][evt]=function(){//给函数传一些动作，值固定的话直接用.,不固定的事件用[]传值
+                        num=this.index;
+                        fnTab(element,item1,img1,evt);//函数封装，把重复的内容封装起来，用到的时候直接调用函数
+                 }
+                    
+             }
+             
+            }
+            fnTab("box1",['面具1','面具2','美女1','美女12'],['img/1.png','img/2.png','img/3.png','img/4.png'],"onclick");
+            fnTab("box2",['面具1','面具2','美女1','美女12'],['img/1.png','img/2.png','img/3.png','img/4.png'],"onmouseover");
+           function autoPlay(){
+
+                timer=setInterval(function(){
+                    num++;
+                    num%=4;
+                    fnTab("box1",['面具1','面具2','美女1','美女12'],['img/1.png','img/2.png','img/3.png','img/4.png'],"onclick");
+                    
+                },1000)
+         } 
+          autoPlay();
+           }
+    </script>
+</head>
+<body>
+<div class="box">
+    <div class="pc" id="box1">
+        <p class="index">1/4</p>
+        <span class="item">文字加载中...</span>
+        <img src="">
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+    <div class="pc" id="box2">
+        <p class="index">1/4</p>
+        <span class="item">文字加载中...</span>
+        <img src="">
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>
